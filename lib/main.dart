@@ -7,15 +7,18 @@ import 'package:flutter_radio_player/flutter_radio_player.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-
-void main() => runApp(const MyApp());
+void main() {
+  runApp(
+    const MaterialApp(
+      home: MyApp(),
+    ),
+  );
+}
 
 class MyApp extends StatefulWidget {
   final playerState = FlutterRadioPlayer.flutter_radio_paused;
 
-
   const MyApp({Key? key}) : super(key: key);
-
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -32,12 +35,10 @@ class _MyAppState extends State<MyApp> {
     initRadioService();
   }
 
-
-
   Future<void> initRadioService() async {
     try {
       await _flutterRadioPlayer.init(
-        "Flutter Radio Example",
+        "Tysa FM",
         "Live",
         "http://radio.ukr.radio:8000/tysafm-mp3-m",
         "false",
@@ -57,6 +58,118 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         resizeToAvoidBottomInset: false,
+        endDrawer: SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.30,
+          child: Drawer(
+            backgroundColor: Colors.teal,
+            elevation: 16.0,
+            child: Column(
+              children:  <Widget>[
+                const Image(image: AssetImage('assets/images/TysaFM.png')),
+                ListTile(
+                  leading: IconButton(
+                    icon:  const Icon(
+                      Icons.facebook,
+                      color: Colors.white,
+                      size: 40,
+                    ),
+                    onPressed: () async {
+                      const url =
+                      'https://www.facebook.com/suspilne.tysafm/';
+                      if (await canLaunch(url)) {
+                        await launch(url, forceSafariVC: false);
+                      } else {
+                        throw 'Could not launch $url';
+                      }
+                    },
+                  ),
+                ),
+                ListTile(
+                  leading: IconButton(
+                    onPressed: () async {
+                      const url =
+                          'https://twitter.com/suspilne_tysafm';
+
+                      if (await canLaunch(url)) {
+                        await launch(url, forceSafariVC: false);
+                      } else {
+                        throw 'Could not launch $url';
+                      }
+                    },
+                    icon: const Icon(FontAwesomeIcons.twitter,
+                        color: Colors.white, size: 40),
+                  ),
+                ),
+                ListTile(leading: IconButton(
+                  onPressed: () async {
+                    const url =
+                        'https://www.instagram.com/suspilne.tysafm/';
+
+                    if (await canLaunch(url)) {
+                      await launch(url, forceSafariVC: false);
+                    } else {
+                      throw 'Could not launch $url';
+                    }
+                  },
+                  icon: const Icon(FontAwesomeIcons.instagram,
+                      color: Colors.white, size: 40),
+                )),
+                ListTile(leading: IconButton(
+                  onPressed: () async {
+                    const url = 'http://t.me/suspilne_tysafm';
+
+                    if (await canLaunch(url)) {
+                      await launch(url, forceSafariVC: false);
+                    } else {
+                      throw 'Could not launch $url';
+                    }
+                  },
+                  icon: const Icon(Icons.telegram,
+                      color: Colors.white, size: 40),
+                )),
+                ListTile(leading: IconButton(
+                  onPressed: () async {
+                    const url = 'https://www.mixcloud.com/tysafm/';
+
+                    if (await canLaunch(url)) {
+                      await launch(url, forceSafariVC: false);
+                    } else {
+                      throw 'Could not launch $url';
+                    }
+                  },
+                  icon: const Icon(FontAwesomeIcons.mixcloud,
+                      color: Colors.white, size: 40),
+                ),),
+                ListTile(leading: IconButton(
+                  onPressed: () async {
+                    const url = 'http://twitch.tv/tysafm';
+
+                    if (await canLaunch(url)) {
+                      await launch(url, forceSafariVC: false);
+                    } else {
+                      throw 'Could not launch $url';
+                    }
+                  },
+                  icon: const Icon(Icons.connected_tv,
+                      color: Colors.white, size: 40),
+                ),),
+                ListTile(leading: IconButton(
+                  onPressed: () async {
+                    const url = 'tel:+38095 510 2277';
+
+                    if (await canLaunch(url)) {
+                      await launch(url, forceSafariVC: false);
+                    } else {
+                      throw 'Could not launch $url';
+                    }
+                  },
+                  icon: const Icon(Icons.phone_forwarded,
+                      color: Colors.white, size: 40),
+                ),)
+              ],
+            ),
+          ),
+        ),
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: Colors.teal,
@@ -68,7 +181,6 @@ class _MyAppState extends State<MyApp> {
         body: SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.only(bottom: 10.0),
-
             color: Colors.teal,
             child: Center(
               child: Column(
@@ -76,78 +188,7 @@ class _MyAppState extends State<MyApp> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
-                  SizedBox(
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: <Widget>[
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: IconButton(
-                              onPressed: () async {
-                                const url =
-                                    'https://www.facebook.com/suspilne.tysafm/';
-
-                                if (await canLaunch(url)) {
-                                  await launch(url, forceSafariVC: false);
-                                } else {
-                                  throw 'Could not launch $url';
-                                }
-                              },
-                              icon: const Icon(
-                                Icons.facebook,
-                                color: Colors.white,
-                                size: 40,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: IconButton(
-                              onPressed: () async {
-                                const url = 'https://twitter.com/suspilne_tysafm';
-
-                                if (await canLaunch(url)) {
-                                  await launch(url, forceSafariVC: false);
-                                } else {
-                                  throw 'Could not launch $url';
-                                }
-                              },
-                              icon: const Icon(
-                                  FontAwesomeIcons.twitter,
-                                  color: Colors.white,
-                                  size: 40
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: IconButton(
-                              onPressed: () async {
-                                const url = 'https://www.instagram.com/suspilne.tysafm/';
-
-                                if (await canLaunch(url)) {
-                                  await launch(url, forceSafariVC: false);
-                                } else {
-                                  throw 'Could not launch $url';
-                                }
-                              },
-                              icon: const Icon(
-                                  FontAwesomeIcons.instagram,
-                                  color: Colors.white,
-                                  size: 40
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Image(image: AssetImage('assets/images/TysaFM.png')),
+                                    const Image(image: AssetImage('assets/images/Tysa.jpg')),
                   StreamBuilder(
                     stream: _flutterRadioPlayer.isPlayingStream,
                     initialData: widget.playerState,
@@ -164,8 +205,10 @@ class _MyAppState extends State<MyApp> {
                             width: 250,
                             height: 200,
                             child: Text(
-                              "Завантаження...",textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: 20, color: Colors.white),
+                              "Завантаження...",
+                              textAlign: TextAlign.center,
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
                             ),
                           );
                         case FlutterRadioPlayer.flutter_radio_error:
@@ -236,99 +279,6 @@ class _MyAppState extends State<MyApp> {
                   //   "Гучність " + (volume * 100).toStringAsFixed(0),
                   // ),
 
-                  SizedBox(
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: <Widget>[
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: IconButton(
-                              onPressed: () async {
-                                const url =
-                                    'http://t.me/suspilne_tysafm';
-
-                                if (await canLaunch(url)) {
-                                  await launch(url, forceSafariVC: false);
-                                } else {
-                                  throw 'Could not launch $url';
-                                }
-                              },
-                              icon: const Icon(
-                                  Icons.telegram,
-                                  color: Colors.white,
-                                  size: 40
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: IconButton(
-                              onPressed: () async {
-                                const url = 'https://www.mixcloud.com/tysafm/';
-
-                                if (await canLaunch(url)) {
-                                  await launch(url, forceSafariVC: false);
-                                } else {
-                                  throw 'Could not launch $url';
-                                }
-                              },
-                              icon: const Icon(
-                                  FontAwesomeIcons.mixcloud,
-                                  color: Colors.white,
-                                  size: 40
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: IconButton(
-                              onPressed: () async {
-                                const url =
-                                    'http://twitch.tv/tysafm';
-
-                                if (await canLaunch(url)) {
-                                  await launch(url, forceSafariVC: false);
-                                } else {
-                                  throw 'Could not launch $url';
-                                }
-                              },
-                              icon: const Icon(
-                                  Icons.connected_tv,
-                                  color: Colors.white,
-                                  size: 40
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: IconButton(
-                              onPressed: () async {
-                                const url = 'tel:+38095 510 2277';
-
-                                if (await canLaunch(url)) {
-                                  await launch(url, forceSafariVC: false);
-                                } else {
-                                  throw 'Could not launch $url';
-                                }
-                              },
-                              icon: const Icon(
-                                  Icons.phone_forwarded,
-                                  color: Colors.white,
-                                  size: 40
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
                 ],
               ),
             ),
@@ -338,7 +288,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
-
-
-
