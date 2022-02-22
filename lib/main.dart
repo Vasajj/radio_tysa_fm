@@ -62,7 +62,7 @@ class _MyAppState extends State<MyApp> {
           width: MediaQuery.of(context).size.width * 0.25,
           child: Drawer(
             backgroundColor: Colors.teal,
-            elevation: 16.0,
+            elevation: 20.0,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -71,7 +71,7 @@ class _MyAppState extends State<MyApp> {
                 ListTile(
                   leading: IconButton(
                     icon: const Icon(
-                      Icons.facebook,
+                      FontAwesomeIcons.facebookF,
                       color: Colors.white,
                       size: 40,
                     ),
@@ -96,8 +96,11 @@ class _MyAppState extends State<MyApp> {
                         throw 'Could not launch $url';
                       }
                     },
-                    icon: const Icon(FontAwesomeIcons.twitter,
-                        color: Colors.white, size: 40),
+                    icon: const Icon(
+                      FontAwesomeIcons.twitter,
+                      color: Colors.white,
+                      size: 40,
+                    ),
                   ),
                 ),
                 ListTile(
@@ -111,8 +114,11 @@ class _MyAppState extends State<MyApp> {
                       throw 'Could not launch $url';
                     }
                   },
-                  icon: const Icon(FontAwesomeIcons.instagram,
-                      color: Colors.white, size: 40),
+                      icon: const Icon(
+                        FontAwesomeIcons.instagram,
+                        color: Colors.white,
+                        size: 40,
+                      ),
                 )),
                 ListTile(
                     leading: IconButton(
@@ -126,7 +132,7 @@ class _MyAppState extends State<MyApp> {
                     }
                   },
                   icon:
-                      const Icon(Icons.telegram, color: Colors.white, size: 40),
+                      const Icon(FontAwesomeIcons.telegramPlane, color: Colors.white, size: 40),
                 )),
                 ListTile(
                   leading: IconButton(
@@ -139,8 +145,11 @@ class _MyAppState extends State<MyApp> {
                         throw 'Could not launch $url';
                       }
                     },
-                    icon: const Icon(FontAwesomeIcons.mixcloud,
-                        color: Colors.white, size: 40),
+                    icon: const Icon(
+                      FontAwesomeIcons.mixcloud,
+                      color: Colors.white,
+                      size: 40,
+                    ),
                   ),
                 ),
                 ListTile(
@@ -180,10 +189,23 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: Colors.teal,
-          title: const Text('Tysa FM',
-              style: TextStyle(
-                fontSize: 35,
-              )),
+          actions: [Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                icon: const Icon(FontAwesomeIcons.arrowLeft),
+                onPressed: () {
+                  Scaffold.of(context).openEndDrawer();
+                },
+                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+              );
+            },
+          ),],
+          title: const Text(
+            'Tysa FM',
+            style: TextStyle(
+              fontSize: 35,
+            ),
+          ),
         ),
         body: SingleChildScrollView(
           child: Container(
