@@ -187,12 +187,13 @@ class _MyAppState extends State<MyApp> {
         ),
         body: SingleChildScrollView(
           child: Container(
-            padding: const EdgeInsets.only(bottom: 10.0),
+            height: MediaQuery.of(context).size.height * 0.87,
+            // padding: const EdgeInsets.only(bottom: 1.0),
             color: Colors.teal,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisSize: MainAxisSize.max,
+              mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 const Image(image: AssetImage('assets/images/Tysa.jpg')),
                 StreamBuilder(
