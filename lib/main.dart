@@ -59,23 +59,24 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
         resizeToAvoidBottomInset: false,
         endDrawer: SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.30,
+          width: MediaQuery.of(context).size.width * 0.25,
           child: Drawer(
             backgroundColor: Colors.teal,
             elevation: 16.0,
             child: Column(
-              children:  <Widget>[
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
                 const Image(image: AssetImage('assets/images/TysaFM.png')),
                 ListTile(
                   leading: IconButton(
-                    icon:  const Icon(
+                    icon: const Icon(
                       Icons.facebook,
                       color: Colors.white,
                       size: 40,
                     ),
                     onPressed: () async {
-                      const url =
-                      'https://www.facebook.com/suspilne.tysafm/';
+                      const url = 'https://www.facebook.com/suspilne.tysafm/';
                       if (await canLaunch(url)) {
                         await launch(url, forceSafariVC: false);
                       } else {
@@ -87,8 +88,7 @@ class _MyAppState extends State<MyApp> {
                 ListTile(
                   leading: IconButton(
                     onPressed: () async {
-                      const url =
-                          'https://twitter.com/suspilne_tysafm';
+                      const url = 'https://twitter.com/suspilne_tysafm';
 
                       if (await canLaunch(url)) {
                         await launch(url, forceSafariVC: false);
@@ -100,10 +100,10 @@ class _MyAppState extends State<MyApp> {
                         color: Colors.white, size: 40),
                   ),
                 ),
-                ListTile(leading: IconButton(
+                ListTile(
+                    leading: IconButton(
                   onPressed: () async {
-                    const url =
-                        'https://www.instagram.com/suspilne.tysafm/';
+                    const url = 'https://www.instagram.com/suspilne.tysafm/';
 
                     if (await canLaunch(url)) {
                       await launch(url, forceSafariVC: false);
@@ -114,7 +114,8 @@ class _MyAppState extends State<MyApp> {
                   icon: const Icon(FontAwesomeIcons.instagram,
                       color: Colors.white, size: 40),
                 )),
-                ListTile(leading: IconButton(
+                ListTile(
+                    leading: IconButton(
                   onPressed: () async {
                     const url = 'http://t.me/suspilne_tysafm';
 
@@ -124,48 +125,54 @@ class _MyAppState extends State<MyApp> {
                       throw 'Could not launch $url';
                     }
                   },
-                  icon: const Icon(Icons.telegram,
-                      color: Colors.white, size: 40),
+                  icon:
+                      const Icon(Icons.telegram, color: Colors.white, size: 40),
                 )),
-                ListTile(leading: IconButton(
-                  onPressed: () async {
-                    const url = 'https://www.mixcloud.com/tysafm/';
+                ListTile(
+                  leading: IconButton(
+                    onPressed: () async {
+                      const url = 'https://www.mixcloud.com/tysafm/';
 
-                    if (await canLaunch(url)) {
-                      await launch(url, forceSafariVC: false);
-                    } else {
-                      throw 'Could not launch $url';
-                    }
-                  },
-                  icon: const Icon(FontAwesomeIcons.mixcloud,
-                      color: Colors.white, size: 40),
-                ),),
-                ListTile(leading: IconButton(
-                  onPressed: () async {
-                    const url = 'http://twitch.tv/tysafm';
+                      if (await canLaunch(url)) {
+                        await launch(url, forceSafariVC: false);
+                      } else {
+                        throw 'Could not launch $url';
+                      }
+                    },
+                    icon: const Icon(FontAwesomeIcons.mixcloud,
+                        color: Colors.white, size: 40),
+                  ),
+                ),
+                ListTile(
+                  leading: IconButton(
+                    onPressed: () async {
+                      const url = 'http://twitch.tv/tysafm';
 
-                    if (await canLaunch(url)) {
-                      await launch(url, forceSafariVC: false);
-                    } else {
-                      throw 'Could not launch $url';
-                    }
-                  },
-                  icon: const Icon(Icons.connected_tv,
-                      color: Colors.white, size: 40),
-                ),),
-                ListTile(leading: IconButton(
-                  onPressed: () async {
-                    const url = 'tel:+38095 510 2277';
+                      if (await canLaunch(url)) {
+                        await launch(url, forceSafariVC: false);
+                      } else {
+                        throw 'Could not launch $url';
+                      }
+                    },
+                    icon: const Icon(Icons.connected_tv,
+                        color: Colors.white, size: 40),
+                  ),
+                ),
+                ListTile(
+                  leading: IconButton(
+                    onPressed: () async {
+                      const url = 'tel:+38095 510 2277';
 
-                    if (await canLaunch(url)) {
-                      await launch(url, forceSafariVC: false);
-                    } else {
-                      throw 'Could not launch $url';
-                    }
-                  },
-                  icon: const Icon(Icons.phone_forwarded,
-                      color: Colors.white, size: 40),
-                ),)
+                      if (await canLaunch(url)) {
+                        await launch(url, forceSafariVC: false);
+                      } else {
+                        throw 'Could not launch $url';
+                      }
+                    },
+                    icon: const Icon(Icons.phone_forwarded,
+                        color: Colors.white, size: 40),
+                  ),
+                )
               ],
             ),
           ),
@@ -182,105 +189,100 @@ class _MyAppState extends State<MyApp> {
           child: Container(
             padding: const EdgeInsets.only(bottom: 10.0),
             color: Colors.teal,
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                                    const Image(image: AssetImage('assets/images/Tysa.jpg')),
-                  StreamBuilder(
-                    stream: _flutterRadioPlayer.isPlayingStream,
-                    initialData: widget.playerState,
-                    builder: (BuildContext context, AsyncSnapshot snapshot) {
-                      String returnData = snapshot.data;
-                      if (kDebugMode) {
-                        print("object data: " + returnData);
-                      }
-                      switch (returnData) {
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                const Image(image: AssetImage('assets/images/Tysa.jpg')),
+                StreamBuilder(
+                  stream: _flutterRadioPlayer.isPlayingStream,
+                  initialData: widget.playerState,
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    String returnData = snapshot.data;
+                    if (kDebugMode) {
+                      print("object data: " + returnData);
+                    }
+                    switch (returnData) {
 
-                        // break;
-                        case FlutterRadioPlayer.flutter_radio_loading:
-                          return const SizedBox(
-                            width: 250,
-                            height: 200,
-                            child: Text(
-                              "Завантаження...",
-                              textAlign: TextAlign.center,
-                              style:
-                                  TextStyle(fontSize: 20, color: Colors.white),
-                            ),
-                          );
-                        case FlutterRadioPlayer.flutter_radio_error:
+                      // break;
+                      case FlutterRadioPlayer.flutter_radio_loading:
+                        return const SizedBox(
+                          width: 250,
+                          height: 200,
+                          child: Text(
+                            "Завантаження...",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                          ),
+                        );
+                      case FlutterRadioPlayer.flutter_radio_error:
 
-                        //break;
-                        default:
-                          return SizedBox(
-                            width: 250,
-                            height: 170,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: <Widget>[
-                                IconButton(
-                                  iconSize: 100,
-                                  onPressed: () async {
-                                    if (kDebugMode) {
-                                      print("button press data: " +
-                                          snapshot.data.toString());
-                                    }
-                                    await _flutterRadioPlayer.playOrPause();
-                                  },
-                                  icon: snapshot.data ==
-                                          FlutterRadioPlayer
-                                              .flutter_radio_playing
-                                      ? const Icon(
-                                          Icons.pause,
-                                          color: Colors.white,
-                                        )
-                                      : const Icon(Icons.play_arrow,
-                                          color: Colors.white),
-                                ),
-                                IconButton(
-                                  iconSize: 100,
-                                  onPressed: () async {
-                                    _flutterRadioPlayer.setUrl(
-                                      "http://radio.ukr.radio:8000/tysafm-mp3-m",
-                                      "false",
-                                    );
-                                  },
-                                  icon: const Icon(Icons.refresh,
-                                      color: Colors.white),
-                                ),
-                                // IconButton(
-                                //onPressed: () async {
-                                //  await _flutterRadioPlayer.stop();
-                                // },
-                                //  icon: const Icon(Icons.stop),
-                                //  )
-                              ],
-                            ),
-                          );
-                        //break;
-                      }
-                    },
-                  ),
-                  // Slider(
-                  //   value: volume,
-                  //   min: 0,
-                  //   max: 1.0,
-                  //   onChanged: (value) => setState(
-                  //         () {
-                  //       volume = value;
-                  //       _flutterRadioPlayer.setVolume(volume);
-                  //     },
-                  //   ),
-                  // ),
-                  // Text(
-                  //   "Гучність " + (volume * 100).toStringAsFixed(0),
-                  // ),
-
-                ],
-              ),
+                      //break;
+                      default:
+                        return SizedBox(
+                          width: 250,
+                          height: 170,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: <Widget>[
+                              IconButton(
+                                iconSize: 100,
+                                onPressed: () async {
+                                  if (kDebugMode) {
+                                    print("button press data: " +
+                                        snapshot.data.toString());
+                                  }
+                                  await _flutterRadioPlayer.playOrPause();
+                                },
+                                icon: snapshot.data ==
+                                        FlutterRadioPlayer.flutter_radio_playing
+                                    ? const Icon(
+                                        Icons.pause,
+                                        color: Colors.white,
+                                      )
+                                    : const Icon(Icons.play_arrow,
+                                        color: Colors.white),
+                              ),
+                              IconButton(
+                                iconSize: 100,
+                                onPressed: () async {
+                                  _flutterRadioPlayer.setUrl(
+                                    "http://radio.ukr.radio:8000/tysafm-mp3-m",
+                                    "false",
+                                  );
+                                },
+                                icon: const Icon(Icons.refresh,
+                                    color: Colors.white),
+                              ),
+                              // IconButton(
+                              //onPressed: () async {
+                              //  await _flutterRadioPlayer.stop();
+                              // },
+                              //  icon: const Icon(Icons.stop),
+                              //  )
+                            ],
+                          ),
+                        );
+                      //break;
+                    }
+                  },
+                ),
+                // Slider(
+                //   value: volume,
+                //   min: 0,
+                //   max: 1.0,
+                //   onChanged: (value) => setState(
+                //         () {
+                //       volume = value;
+                //       _flutterRadioPlayer.setVolume(volume);
+                //     },
+                //   ),
+                // ),
+                // Text(
+                //   "Гучність " + (volume * 100).toStringAsFixed(0),
+                // ),
+              ],
             ),
           ),
         ),
