@@ -259,7 +259,7 @@ class _MyAppState extends State<MyApp> {
                                     "false",
                                   );
                                 },
-                                icon: const Icon(FontAwesomeIcons.powerOff,
+                                icon: const Icon(FontAwesomeIcons.compactDisc,
                                     color: Colors.white),
                               ),
                               IconButton(
