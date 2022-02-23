@@ -18,6 +18,7 @@ void main() {
 class MyApp extends StatefulWidget {
   final playerState = FlutterRadioPlayer.flutter_radio_paused;
 
+
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -28,6 +29,7 @@ class _MyAppState extends State<MyApp> {
   // int _currentIndex = 0;
   double volume = 0.8;
   final FlutterRadioPlayer _flutterRadioPlayer = FlutterRadioPlayer();
+
 
   @override
   void initState() {
@@ -40,7 +42,7 @@ class _MyAppState extends State<MyApp> {
       await _flutterRadioPlayer.init(
         "Tysa FM",
         "Live",
-        "http://radio.ukr.radio:8000/tysafm-mp3-m",
+        "http://radio.ukr.radio:8000/tysafm-mp3",
         "false",
       );
     } on PlatformException {
@@ -61,13 +63,13 @@ class _MyAppState extends State<MyApp> {
         endDrawer: SizedBox(
           width: MediaQuery.of(context).size.width * 0.25,
           child: Drawer(
-            backgroundColor: Colors.teal,
+            backgroundColor: const Color(0xff00310b),
             elevation: 20.0,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                const Image(image: AssetImage('assets/images/TysaFM.png')),
+                 const CircleAvatar(backgroundImage: AssetImage('assets/images/TysaAvatar.jpg'), radius: 32,),
                 ListTile(
                   leading: IconButton(
                     icon: const Icon(
@@ -188,7 +190,7 @@ class _MyAppState extends State<MyApp> {
         ),
         appBar: AppBar(
           centerTitle: true,
-          backgroundColor: Colors.teal,
+          backgroundColor: const Color(0xff00310b),
           actions: [Builder(
             builder: (BuildContext context) {
               return IconButton(
@@ -211,7 +213,7 @@ class _MyAppState extends State<MyApp> {
           child: Container(
             height: MediaQuery.of(context).size.height * 0.87,
             // padding: const EdgeInsets.only(bottom: 1.0),
-            color: Colors.teal,
+            color: const Color(0xff00310b),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -252,6 +254,17 @@ class _MyAppState extends State<MyApp> {
                               IconButton(
                                 iconSize: 100,
                                 onPressed: () async {
+                                  _flutterRadioPlayer.setUrl(
+                                    "http://radio.ukr.radio:8000/tysafm-mp3",
+                                    "false",
+                                  );
+                                },
+                                icon: const Icon(FontAwesomeIcons.powerOff,
+                                    color: Colors.white),
+                              ),
+                              IconButton(
+                                iconSize: 100,
+                                onPressed: () async {
                                   if (kDebugMode) {
                                     print("button press data: " +
                                         snapshot.data.toString());
@@ -261,23 +274,13 @@ class _MyAppState extends State<MyApp> {
                                 icon: snapshot.data ==
                                         FlutterRadioPlayer.flutter_radio_playing
                                     ? const Icon(
-                                        Icons.pause,
+                                  FontAwesomeIcons.pause,
                                         color: Colors.white,
                                       )
-                                    : const Icon(Icons.play_arrow,
+                                    : const Icon(FontAwesomeIcons.play,
                                         color: Colors.white),
                               ),
-                              IconButton(
-                                iconSize: 100,
-                                onPressed: () async {
-                                  _flutterRadioPlayer.setUrl(
-                                    "http://radio.ukr.radio:8000/tysafm-mp3-m",
-                                    "false",
-                                  );
-                                },
-                                icon: const Icon(Icons.refresh,
-                                    color: Colors.white),
-                              ),
+
                               // IconButton(
                               //onPressed: () async {
                               //  await _flutterRadioPlayer.stop();
