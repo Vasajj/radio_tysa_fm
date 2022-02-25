@@ -77,11 +77,13 @@ packages:
     source: hosted
     version: "2.0.5"
   flutter_radio_player:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
-      name: flutter_radio_player
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: "450744375766719421d873acd0ccd58f9c406176"
+      url: "https://github.com/justinbeatz/FlutterRadioPlayer.git"
+    source: git
     version: "1.1.0"
   flutter_test:
     dependency: "direct dev"
@@ -251,7 +253,7 @@ packages:
       name: url_launcher_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.8"
+    version: "2.0.9"
   url_launcher_windows:
     dependency: transitive
     description:
