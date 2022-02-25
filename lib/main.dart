@@ -7,6 +7,7 @@ import 'package:flutter_radio_player/flutter_radio_player.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+
 void main() {
   runApp(
     const MaterialApp(
@@ -57,6 +58,9 @@ class _MyAppState extends State<MyApp> {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
+
+
+
     return MaterialApp(
       home: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -209,107 +213,105 @@ class _MyAppState extends State<MyApp> {
             ),
           ),
         ),
-        body: SingleChildScrollView(
-          child: Container(
-            height: MediaQuery.of(context).size.height * 0.87,
-            // padding: const EdgeInsets.only(bottom: 1.0),
-            color: const Color(0xff00310b),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                const Image(image: AssetImage('assets/images/Tysa.jpg')),
-                StreamBuilder(
-                  stream: _flutterRadioPlayer.isPlayingStream,
-                  initialData: widget.playerState,
-                  builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    String returnData = snapshot.data;
-                    if (kDebugMode) {
-                      print("object data: " + returnData);
-                    }
-                    switch (returnData) {
+        body: Container(
+          height: MediaQuery.of(context).size.height * 1.0,
+          // padding: const EdgeInsets.only(bottom: 1.0),
+          color: const Color(0xff00310b),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              const Image(image: AssetImage('assets/images/Tysa.jpg')),
+              StreamBuilder(
+                stream: _flutterRadioPlayer.isPlayingStream,
+                initialData: widget.playerState,
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  String returnData = snapshot.data;
+                  if (kDebugMode) {
+                    print("object data: " + returnData);
+                  }
+                  switch (returnData) {
 
-                      // break;
-                      case FlutterRadioPlayer.flutter_radio_loading:
-                        return const SizedBox(
-                          width: 250,
-                          height: 200,
-                          child: Text(
-                            "Завантаження...",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 20, color: Colors.white),
-                          ),
-                        );
-                      case FlutterRadioPlayer.flutter_radio_error:
+                    // break;
+                    case FlutterRadioPlayer.flutter_radio_loading:
+                      return const SizedBox(
+                        width: 250,
+                        height: 200,
+                        child: Text(
+                          "Завантаження...",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 20, color: Colors.white),
+                        ),
+                      );
+                    case FlutterRadioPlayer.flutter_radio_error:
 
-                      //break;
-                      default:
-                        return SizedBox(
-                          width: 250,
-                          height: 170,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: <Widget>[
-                              IconButton(
-                                iconSize: 100,
-                                onPressed: () async {
-                                  _flutterRadioPlayer.setUrl(
-                                    "http://radio.ukr.radio:8000/tysafm-mp3",
-                                    "false",
-                                  );
-                                },
-                                icon: const Icon(FontAwesomeIcons.compactDisc,
-                                    color: Colors.white),
-                              ),
-                              IconButton(
-                                iconSize: 100,
-                                onPressed: () async {
-                                  if (kDebugMode) {
-                                    print("button press data: " +
-                                        snapshot.data.toString());
-                                  }
-                                  await _flutterRadioPlayer.playOrPause();
-                                },
-                                icon: snapshot.data ==
-                                        FlutterRadioPlayer.flutter_radio_playing
-                                    ? const Icon(
-                                  FontAwesomeIcons.pause,
-                                        color: Colors.white,
-                                      )
-                                    : const Icon(FontAwesomeIcons.play,
-                                        color: Colors.white),
-                              ),
+                    //break;
+                    default:
+                      return SizedBox(
+                        width: 250,
+                        height: 170,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: <Widget>[
+                            IconButton(
+                              iconSize: 100,
+                              onPressed: () async {
+                                _flutterRadioPlayer.setUrl(
+                                  "http://radio.ukr.radio:8000/tysafm-mp3",
+                                  "false",
+                                );
+                              },
+                              icon: const Icon(FontAwesomeIcons.compactDisc,
+                                  color: Colors.white),
+                            ),
+                            IconButton(
+                              iconSize: 100,
+                              onPressed: () async {
+                                if (kDebugMode) {
+                                  print("button press data: " +
+                                      snapshot.data.toString());
+                                }
+                                await _flutterRadioPlayer.playOrPause();
+                              },
+                              icon: snapshot.data ==
+                                      FlutterRadioPlayer.flutter_radio_playing
+                                  ? const Icon(
+                                FontAwesomeIcons.pause,
+                                      color: Colors.white,
+                                    )
+                                  : const Icon(FontAwesomeIcons.play,
+                                      color: Colors.white),
+                            ),
 
-                              // IconButton(
-                              //onPressed: () async {
-                              //  await _flutterRadioPlayer.stop();
-                              // },
-                              //  icon: const Icon(Icons.stop),
-                              //  )
-                            ],
-                          ),
-                        );
-                      //break;
-                    }
-                  },
-                ),
-                // Slider(
-                //   value: volume,
-                //   min: 0,
-                //   max: 1.0,
-                //   onChanged: (value) => setState(
-                //         () {
-                //       volume = value;
-                //       _flutterRadioPlayer.setVolume(volume);
-                //     },
-                //   ),
-                // ),
-                // Text(
-                //   "Гучність " + (volume * 100).toStringAsFixed(0),
-                // ),
-              ],
-            ),
+                            // IconButton(
+                            //onPressed: () async {
+                            //  await _flutterRadioPlayer.stop();
+                            // },
+                            //  icon: const Icon(Icons.stop),
+                            //  )
+                          ],
+                        ),
+                      );
+                    //break;
+                  }
+                },
+              ),
+              // Slider(
+              //   activeColor: Colors.white,
+              //   inactiveColor: Colors.greenAccent,
+              //   thumbColor: Colors.white,
+              //   value: volume,
+              //   min: 0,
+              //   max: 1.0,
+              //   onChanged: (value) => setState(
+              //         () {
+              //       volume = value;
+              //       _flutterRadioPlayer.setVolume(volume);
+              //     },
+              //   ),
+              // ),
+            ],
           ),
         ),
       ),
