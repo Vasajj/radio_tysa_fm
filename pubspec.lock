@@ -70,7 +70,7 @@ packages:
     source: hosted
     version: "1.0.4"
   flutter_plugin_android_lifecycle:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_plugin_android_lifecycle
       url: "https://pub.dartlang.org"
@@ -79,11 +79,9 @@ packages:
   flutter_radio_player:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "450744375766719421d873acd0ccd58f9c406176"
-      url: "https://github.com/justinbeatz/FlutterRadioPlayer.git"
-    source: git
+      name: flutter_radio_player
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "1.1.0"
   flutter_test:
     dependency: "direct dev"

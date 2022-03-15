@@ -19,6 +19,7 @@ version: 1.0.0+1
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
+  flutter: ">=1.12.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -36,14 +37,17 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  flutter_plugin_android_lifecycle: ^2.0.1
   url_launcher: ^6.0.20
   font_awesome_flutter: ^9.2.0
   flutter_radio_player:
-    git: https://github.com/justinbeatz/FlutterRadioPlayer.git
+#    git: https://github.com/sithiramunasinghe/FlutterRadioPlayer.git
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+
 
 
 #  flutter_radio_player: ^1.1.0
@@ -61,6 +65,13 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+  plugin:
+    platforms:
+      android:
+        package: me.sithiramunasinghe.flutter.flutter_radio_player
+        pluginClass: FlutterRadioPlayerPlugin
+      ios:
+        pluginClass: FlutterRadioPlayerPlugin
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
