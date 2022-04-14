@@ -19,7 +19,8 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
+  late AnimationController _animationController;
   final RadioPlayer _radioPlayer = RadioPlayer();
   bool isPlaying = false;
   List<String>? metadata;
@@ -27,7 +28,15 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    _animationController =  AnimationController(
+        vsync: this, duration: const Duration(seconds: 1));
     initRadioPlayer();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _animationController.dispose();
   }
 
   void initRadioPlayer() {
@@ -49,6 +58,9 @@ class _MyAppState extends State<MyApp> {
       });
     });
   }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -229,13 +241,20 @@ class _MyAppState extends State<MyApp> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  IconButton(
-                    iconSize: 100,
-                    onPressed: () async {
-                      _radioPlayer.stop();
-                    },
-                    icon: const Icon(FontAwesomeIcons.compactDisc,
-                        color: Colors.white),
+                  RotationTransition(
+                    turns: Tween(begin: 0.0, end: 1.0)
+                        .animate(_animationController),
+                    child: IconButton(
+                      iconSize: 100,
+                      onPressed: () async {
+                        setState(() {
+                          _animationController.forward(from: 0.0);
+                        });
+                        _radioPlayer.stop();
+                      },
+                      icon: const Icon(FontAwesomeIcons.compactDisc,
+                          color: Colors.white),
+                    ),
                   ),
                   IconButton(
                     iconSize: 100,
@@ -257,3 +276,5 @@ class _MyAppState extends State<MyApp> {
     ));
   }
 }
+
+
