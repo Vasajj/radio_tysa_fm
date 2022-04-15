@@ -39,11 +39,9 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
     _animationController.dispose();
   }
 
-
-
   void initRadioPlayer() {
     _radioPlayer.setChannel(
-      title: 'Tysa FM',
+      title: 'Тиса FM',
       url: 'http://radio.ukr.radio:8000/tysafm-mp3',
       imagePath: 'assets/Tysa.jpg',
     );
@@ -225,65 +223,78 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
             ),
           ),
         ),
-        body: Builder(
-          builder: (context) {
-            return Container(
-              height: MediaQuery.of(context).size.height * 1.0,
-              // padding: const EdgeInsets.only(bottom: 1.0),
-              color: const Color(0xff00310b),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  const Image(image: AssetImage('assets/Tysa.jpg')),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 60),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        RotationTransition(
-                          turns: Tween(begin: 0.0, end: 1.0)
-                              .animate(_animationController),
-                          child: IconButton(
-                            iconSize: 100,
-                            onPressed: () async {
-                              setState(() {
-                                _animationController.forward(from: 0.0);
-                              });
-                              const snackBar = SnackBar(
-                                  duration: Duration(seconds: 1),                                content: Text('Завантаження...'),
-                                backgroundColor: (Colors.black12),
-
-                              );
-                              ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                              _radioPlayer.stop();
-                              isPlaying ? _radioPlayer.play() :  _radioPlayer.pause();
-                            },
-                            icon: const Icon(FontAwesomeIcons.compactDisc,
-                                color: Colors.white),
-                          ),
-                        ),
-                        IconButton(
+        body: Builder(builder: (context) {
+          return Container(
+            height: MediaQuery.of(context).size.height * 1.0,
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color(0xff34855A),
+                Color(0xff0C2015),
+              ],
+            )),
+            // padding: const EdgeInsets.only(bottom: 1.0),
+            // color: const Color(0xff00310b),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const Image(image: AssetImage('assets/Tysa.jpg')),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 60),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      RotationTransition(
+                        turns: Tween(begin: 0.0, end: 1.0)
+                            .animate(_animationController),
+                        child: IconButton(
                           iconSize: 100,
                           onPressed: () async {
-                            isPlaying ? _radioPlayer.pause() : _radioPlayer.play();
+                            setState(() {
+                              _animationController.forward(from: 0.0);
+                            });
+                            const snackBar = SnackBar(
+                              duration: Duration(seconds: 1),
+                              content: Text('Завантаження...'),
+                              backgroundColor: (Colors.black12),
+                            );
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                            _radioPlayer.stop();
+                            isPlaying
+                                ? _radioPlayer.play()
+                                : _radioPlayer.pause();
                           },
-                          icon: Icon(
-                              isPlaying
-                                  ? FontAwesomeIcons.pause
-                                  : FontAwesomeIcons.play,
+                          icon: const Icon(FontAwesomeIcons.compactDisc,
                               color: Colors.white),
                         ),
-                      ],
-                    ),
+                      ),
+                      IconButton(
+                        iconSize: 100,
+                        onPressed: () async {
+                          isPlaying
+                              ? _radioPlayer.pause()
+                              : _radioPlayer.play();
+                        },
+                        icon: Icon(
+                            isPlaying
+                                ? FontAwesomeIcons.pause
+                                : FontAwesomeIcons.play,
+                            color: Colors.white),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            );
-          }
-        ),
+                ),
+              ],
+            ),
+          );
+        }),
       ),
     );
   }
 }
+
