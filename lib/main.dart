@@ -235,8 +235,6 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
                 Color(0xff0C2015),
               ],
             )),
-            // padding: const EdgeInsets.only(bottom: 1.0),
-            // color: const Color(0xff00310b),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -297,4 +295,3 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
     );
   }
 }
-
