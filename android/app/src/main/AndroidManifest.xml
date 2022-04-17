@@ -18,7 +18,7 @@
     </queries>
 
    <application
-        android:label="Tysa FM"
+        android:label="Тиса FM"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -30,7 +30,7 @@
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize"
             tools:ignore="Instantiatable"
-            tools:targetApi="cupcake">
+            tools:targetApi="honeycomb">
             <!-- Specifies an Android theme to apply to this Activity as soon as
                  the Android process has started. This theme is visible to the user
                  while the Flutter UI initializes. After that, this theme continues
@@ -51,6 +51,7 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
 
 
