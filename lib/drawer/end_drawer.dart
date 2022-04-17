@@ -4,15 +4,24 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
 class EndDrawer extends StatelessWidget {
+
   const EndDrawer({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.25,
+      height: MediaQuery.of(context).size.height,
       child: Drawer(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              bottomLeft: Radius.circular(20)),
+        ),
         backgroundColor: const Color(0xff00310b),
         elevation: 20.0,
+
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,

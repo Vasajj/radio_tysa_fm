@@ -91,7 +91,9 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
             ),
           ),
         ),
-        endDrawer: const EndDrawer(),
+        endDrawer: const SafeArea(
+          child: EndDrawer(),
+        ),
         body: Builder(builder: (context) {
           return Container(
             height: MediaQuery.of(context).size.height * 1.0,
@@ -164,6 +166,3 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
     );
   }
 }
-
-
-
