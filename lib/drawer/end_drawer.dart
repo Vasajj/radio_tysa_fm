@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-
 class EndDrawer extends StatelessWidget {
-
   const EndDrawer({Key? key}) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +12,10 @@ class EndDrawer extends StatelessWidget {
       height: MediaQuery.of(context).size.height,
       child: Drawer(
         shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20),
-              bottomLeft: Radius.circular(20)),
+          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20)),
         ),
         backgroundColor: const Color(0xff00310b),
         elevation: 20.0,
-
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -30,8 +24,9 @@ class EndDrawer extends StatelessWidget {
               backgroundImage: AssetImage('assets/TysaAvatar.jpg'),
               radius: 32,
             ),
-            ListTile(
-              leading: IconButton(
+            Container(
+              alignment: Alignment.center,
+              child: IconButton(
                 icon: const Icon(
                   FontAwesomeIcons.facebookF,
                   color: Colors.white,
@@ -47,8 +42,9 @@ class EndDrawer extends StatelessWidget {
                 },
               ),
             ),
-            ListTile(
-              leading: IconButton(
+            Container(
+              alignment: Alignment.center,
+              child: IconButton(
                 onPressed: () async {
                   const url = 'https://twitter.com/suspilne_tysafm';
 
@@ -65,8 +61,9 @@ class EndDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            ListTile(
-                leading: IconButton(
+            Container(
+                alignment: Alignment.center,
+                child: IconButton(
                   onPressed: () async {
                     const url = 'https://www.instagram.com/suspilne.tysafm/';
 
@@ -82,8 +79,9 @@ class EndDrawer extends StatelessWidget {
                     size: 40,
                   ),
                 )),
-            ListTile(
-                leading: IconButton(
+            Container(
+                alignment: Alignment.center,
+                child: IconButton(
                   onPressed: () async {
                     const url = 'http://t.me/suspilne_tysafm';
 
@@ -93,11 +91,12 @@ class EndDrawer extends StatelessWidget {
                       throw 'Could not launch $url';
                     }
                   },
-                  icon: const Icon(FontAwesomeIcons.telegramPlane,
+                  icon: const Icon(FontAwesomeIcons.telegram,
                       color: Colors.white, size: 40),
                 )),
-            ListTile(
-              leading: IconButton(
+            Container(
+              alignment: Alignment.center,
+              child: IconButton(
                 onPressed: () async {
                   const url = 'https://www.mixcloud.com/tysafm/';
 
@@ -114,8 +113,9 @@ class EndDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            ListTile(
-              leading: IconButton(
+            Container(
+              alignment: Alignment.center,
+              child: IconButton(
                 onPressed: () async {
                   const url = 'http://twitch.tv/tysafm';
 
@@ -129,8 +129,9 @@ class EndDrawer extends StatelessWidget {
                     color: Colors.white, size: 40),
               ),
             ),
-            ListTile(
-              leading: IconButton(
+            Container(
+              alignment: Alignment.center,
+              child: IconButton(
                 onPressed: () async {
                   const url = 'tel:+38095 510 2277';
 
